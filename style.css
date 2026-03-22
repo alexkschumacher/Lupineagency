@@ -594,7 +594,37 @@
    SERVICES — Section 01
    ============================================================ */
 .services {
+  position: relative;
   padding: clamp(var(--space-16), 8vw, var(--space-32)) 0;
+  overflow: hidden;
+}
+
+.services__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.services__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.services__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(44, 46, 36, 0.72) 0%,
+    rgba(44, 46, 36, 0.65) 50%,
+    rgba(44, 46, 36, 0.75) 100%
+  );
+}
+
+.services .container {
+  position: relative;
+  z-index: 1;
 }
 
 .services__grid {
@@ -610,9 +640,29 @@
   }
 }
 
+.services__quote {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: center;
+  max-width: 600px;
+  margin: var(--space-12) auto 0;
+}
+
+@media (min-width: 768px) {
+  .services__quote {
+    font-size: var(--text-lg);
+  }
+}
+
 .service-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   padding: var(--space-6) var(--space-6);
   position: relative;
   transition: all 0.45s var(--ease);
@@ -632,16 +682,15 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+  background: linear-gradient(90deg, var(--color-accent-light), transparent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s var(--ease);
 }
 
 .service-card:hover {
-  border-color: var(--color-accent-light);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(107, 127, 94, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .service-card:hover::before {
@@ -660,7 +709,7 @@
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: 400;
-  color: var(--color-text);
+  color: #fff;
   margin-bottom: var(--space-4);
 }
 
@@ -668,7 +717,7 @@
   font-size: var(--text-sm);
   font-weight: 300;
   line-height: 1.65;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.7);
   margin-bottom: auto;
 }
 
@@ -698,10 +747,10 @@
   font-size: var(--text-xs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-light);
   margin-top: var(--space-6);
   padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: block;
 }
 
@@ -851,6 +900,7 @@
   text-transform: uppercase;
   color: var(--color-text-faint);
   margin-bottom: var(--space-6);
+  padding-inline: var(--space-6);
 }
 
 .marquee__track {
